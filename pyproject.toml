@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "botw-quest-tracker"
+version = "0.1.0"
+description = "Quest tracker for Breath of the Wild"
+authors = ["Aaron Schultz <aaron@hschultz.net>"]
+readme = "README.md"
+packages = [{include = "botw_quest_tracker"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+numpy = "^1.23.3"
+pywin32 = "^304"
+pytesseract = "^0.3.10"
+matplotlib = "^3.6.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
