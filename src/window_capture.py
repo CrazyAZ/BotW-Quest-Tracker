@@ -34,7 +34,7 @@ class WindowCapture:
 
         # account for the window border and titlebar and cut them off
         border_pixels = 10
-        titlebar_pixels = 0
+        titlebar_pixels = 45
         self.w = self.w - (border_pixels * 2)
         self.h = self.h - titlebar_pixels - border_pixels
         self.cropped_x = border_pixels
@@ -73,6 +73,7 @@ class WindowCapture:
         #   error: (-215:Assertion failed) (depth == CV_8U || depth == CV_32F) && type == _templ.type() 
         #   && _img.dims() <= 2 in function 'cv::matchTemplate'
         img = img[...,:3]
+        # img = img[..., ::-1]
         img = np.sum(img, axis=-1) // 3
         img = img.astype('uint8')
 
@@ -87,3 +88,15 @@ class WindowCapture:
             if win32gui.IsWindowVisible(hwnd):
                 print(hex(hwnd), win32gui.GetWindowText(hwnd))
         win32gui.EnumWindows(winEnumHandler, None)
+
+    @staticmethod
+    def find_window_name(str):
+        window_names = []
+        def winEnumHandler(hwnd, ctx):
+            if win32gui.IsWindowVisible(hwnd):
+                window_names.append(win32gui.GetWindowText(hwnd))
+        win32gui.EnumWindows(winEnumHandler, None)
+        for w in window_names:
+            if str in w:
+                return w
+

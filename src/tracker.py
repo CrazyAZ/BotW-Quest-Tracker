@@ -21,9 +21,8 @@ complete_w = 0.17
 complete_threshold = 0.6
 quest_threshold = 0.6
 
-# WindowCapture.list_window_names()
-window_name = 'Windowed Projector (Source) - Capture Card'
-window_name = 'Picture-in-Picture'
+window_name = WindowCapture.find_window_name('Windowed Projector (Source)')
+# window_name = 'Picture-in-Picture'
 
 file = open('data/main_quests.txt', 'r')
 main_quests = []
@@ -92,7 +91,6 @@ while True:
 
         print('Completed ' + quest + '! Score:', all_scores[quest_type][quest_index])
         print(quests_completed[0], '/', quest_totals[0], quests_completed[1], '/', quest_totals[1], quests_completed[2], '/', quest_totals[2])
-
     
         del all_quests[quest_type][quest_index]
 
