@@ -1,5 +1,5 @@
 import numpy as np
-import win32gui, win32ui, win32con, win32api
+import win32gui, win32ui, win32con
 
 
 class WindowCapture:
@@ -34,7 +34,7 @@ class WindowCapture:
 
         # account for the window border and titlebar and cut them off
         border_pixels = 10
-        titlebar_pixels = 45
+        titlebar_pixels = 0
         self.w = self.w - (border_pixels * 2)
         self.h = self.h - titlebar_pixels - border_pixels
         self.cropped_x = border_pixels
