@@ -1,5 +1,6 @@
 import numpy as np
 import win32gui, win32ui, win32con
+import cv2
 
 
 class WindowCapture:
@@ -73,9 +74,9 @@ class WindowCapture:
         #   error: (-215:Assertion failed) (depth == CV_8U || depth == CV_32F) && type == _templ.type() 
         #   && _img.dims() <= 2 in function 'cv::matchTemplate'
         img = img[...,:3]
-        # img = img[..., ::-1]
-        img = np.sum(img, axis=-1) // 3
-        img = img.astype('uint8')
+
+        hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+        img = hsv[..., -1]
 
         return img
 
